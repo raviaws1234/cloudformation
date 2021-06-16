@@ -1,0 +1,17 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: "AWS::Serverless-2016-10-31"
+Description: My Simple Stack
+
+Parameters:
+  AliasName:
+    Type: String
+    Default: dev
+
+Resources:
+  SimpleQueue:
+    Type: AWS::SQS::Queue
+    Properties:
+      QueueName: !Sub my-simple-queue-${AliasName}
+      ReceiveMessageWaitTimeSeconds: 5
+      MessageRetentionPeriod: 60
+      VisibilityTimeout: 300
